@@ -1,32 +1,22 @@
-import React, { useReducer } from "react";
-import Moment from "react-moment";
+import React from "react";
 
-
-export default class TableData extends React.Component {
+export default class TableHeader extends React.Component {
   render() {
     return (
       <div>
         <table className="table">
-          <tbody>
-            {this.props.employees.map((employee) => (
-              <tr>
-                <th scope="row"></th>
+          <thead className="thead-light">
+            <tr>
+              <th scope="col">Image</th>
 
-                <td>
-                  <img src={employee.picture.medium} alt="employee" />
-                </td>
-
-                <td>
-                  {employee.name.first} {employee.name.last}
-                </td>
-                <td>{employee.phone}</td>
-                <td>{employee.email}</td>
-                <Moment format="MM/DD/YYYY">
-                  <td>{employee.dob.date}</td>
-                </Moment>
-              </tr>
-            ))}
-          </tbody>
+              <th scope="col" onClick={this.props.SortByName}>
+                Name
+              </th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+              <th scope="col">DOB</th>
+            </tr>
+          </thead>
         </table>
       </div>
     );
