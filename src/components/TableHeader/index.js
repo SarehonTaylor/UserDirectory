@@ -31,3 +31,4 @@ export default class TableData extends React.Component {
       </div>
     );
   }
+}

@@ -1,58 +1,91 @@
-import React, { useReducer } from 'react';
-import Moment from 'react-moment';
+import React from "react";
+import PageHeader from "../PageHeader";
+import SearchBar from "../SearchBar";
+import TableData from "../TableData";
+import TableHeader from "../TableHeader";
+import getEmployeeName from "../../util/API";
 
-// What goes here?
+export default class TableArea extends React.Component {
+  state = {
+    search: "name",
+    employees: [],
+  };
+  // last search is staying on page
+  componentDidMount = () => {
+    this.loadEmployees();
+  };
 
-// Employess should load on page load
-// Search should filter through list of existing employees
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
 
+  loadEmployees = () => [
+    getEmployeeName()
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          // API returns "results"
+          employees: response.data.results,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      }),
+  ];
 
+  // Working, but last search is not staying on page
+  searchEmployee = () => [
+    getEmployeeName()
+      .then((response) => {
+        console.log(response);
 
-export default class TableData extends React.Component {
+        let filter = this.state.search;
 
+        let filteredList = response.data.results.filter((item) => {
+          // merge data together, then see if user input is anywhere inside
+          let values = Object.values(item.name.first).join("").toLowerCase();
+          return values.indexOf(filter.toLowerCase()) !== -1;
+        });
 
+        this.setState({
+          employees: filteredList,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      }),
+  ];
 
-    render() {
-        return (
-            <div>
+  handleInputSubmit = (event) => {
+    event.preventDefault();
+    console.log("stuff");
 
-                <table className="table">
+    this.searchEmployee();
+  };
 
+  SortByName = (e) => {
+    function handleClick(e) {
+      e.preventDefault();
+      console.log("The link was clicked!");
 
-                    <tbody>
-
-                        {/* Map Works */}
-                        {/* Moment works */}
-
-                        {this.props.employees.map((employee) => (
-                            // Key 
-                            < tr >
-                                <th scope="row"></th>
-
-                                <td>
-                                    <img
-                                        src={employee.picture.medium}
-                                        alt='employee'
-                                    />
-                                </td>
-
-
-                                <td>{employee.name.first} {employee.name.last}</td>
-                                <td>{employee.phone}</td>
-                                <td>{employee.email}</td>
-                                <Moment format="MM/DD/YYYY">
-                                    <td>{employee.dob.date}</td>
-                                </Moment>
-                            </tr>
-
-                        ))}
-
-
-                    </tbody>
-                </table>
-            </div >
-
-
-        )
     }
+};
+
+render() {
+  return (
+    <div className="wrapper">
+      <PageHeader />
+      <SearchBar
+        search={this.state.search}
+        handleInputChange={this.handleInputChange}
+        handleSubmit={this.handleInputSubmit}
+      />
+      <TableHeader SortByName={this.SortByName} />
+      <TableData employees={this.state.employees} />
+    </div>
+  );
+}
 }
