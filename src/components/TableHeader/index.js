@@ -5,18 +5,7 @@ import React from 'react';
 export default class TableHeader extends React.Component {
 
 
-    // function SortByName() {
-    //     function handleClick(e) {
-    //         e.preventDefault();
-    //         console.log('The link was clicked!');
-    //     }
-    // }
-
-
-    // Manipulate state on App component, in my case, it would be Table Area. 
-    // Event handler goes here
-
-    render() {
+ 
         return (
             <div>
                 <table className="table">
@@ -44,4 +33,3 @@ export default class TableHeader extends React.Component {
             </div>
         )
     }
-}
