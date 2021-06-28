@@ -24,7 +24,7 @@ MIT License
 SarehonTaylor
 ## Test
 Run yard start after following the directions above
-Heroku Deployment: https://workouttrackerproject.herokuapp.com/?id=60d77a6a452dbf001534f8dd
+Heroku Deployment: https://userdirectoryproject.herokuapp.com/
 ## Questions
 If you would like to contact me I can be reached at:
 Github:[SarehonTaylor]
