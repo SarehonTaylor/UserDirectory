@@ -9,20 +9,21 @@
 * [Test](#test)
 * [Questions](#questions)
 ## Description
-This application allows you to see your progress during a timeframe after inputting your workout regimen.
+This application allows you to see add/seed a user directory and then search for a user
+![image](https://user-images.githubusercontent.com/74032335/123577400-bf0def00-d7a1-11eb-8843-b7c76dc60104.png)
 
 
 
 ## Installation
-If installing the project files locally you will need to run npm install command in the terminal.
+If installing the project files locally you will need to run npx my-app User Directory and then run yarn install and then yard start.
 ## Usage
-After installing the files run node server.js
+After installing the files follow the installtion steps
 ## License
 MIT License
 ## Contributors
 SarehonTaylor
 ## Test
-Run node server.js in your VS Code Terminal To Start.
+Run yard start after following the directions above
 Heroku Deployment: https://workouttrackerproject.herokuapp.com/?id=60d77a6a452dbf001534f8dd
 ## Questions
 If you would like to contact me I can be reached at:
